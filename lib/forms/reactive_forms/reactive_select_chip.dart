@@ -1,17 +1,17 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
+import 'package:ui_forms/forms/dropdown_base_picker.dart';
 
 import '../multiselect_chips.dart';
 import '../select_chip.dart';
-import 'decorated_reactive_base_picker.dart' as bp;
 
 class ReactiveSelect<T> extends ReactiveFormField<T, T> {
   ReactiveSelect({
     super.key,
     required String super.formControlName,
     super.validationMessages,
-    required bp.SyncLoadFunction<T> availablesOptions,
+    required SyncLoadFunction<T> availablesOptions,
     required ItemBuilder<T> itemBuilder,
     String? label,
     WrapAlignment? wrapAlignment,
@@ -40,7 +40,7 @@ class ReactiveMultiSelect<T>
     super.key,
     required String formControlName,
     final Map<String, ValidationMessageFunction>? validationMessages,
-    required final bp.SyncLoadFunction<T> availablesOptions,
+    required final SyncLoadFunction<T> availablesOptions,
     required final ItemBuilder<T> itemBuilder,
     final IconData? icon,
     final String? label,

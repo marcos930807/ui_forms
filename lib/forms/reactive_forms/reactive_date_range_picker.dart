@@ -9,8 +9,8 @@ import 'package:reactive_forms/reactive_forms.dart';
 /// that is bound to [ReactiveTimePicker].
 ///
 /// See also [ReactiveDatePickerDelegate].
-typedef ReactiveDateRangePickerBuilder = Widget Function(
-    BuildContext context, ReactiveDateRangePickerDelegate picker, Widget? child);
+typedef ReactiveDateRangePickerBuilder = Widget Function(BuildContext context,
+    ReactiveDateRangePickerDelegate picker, Widget? child);
 
 /// This is a convenience widget that wraps the function
 /// [showDatePicker] in a [ReactiveDatePicker].
@@ -34,7 +34,8 @@ typedef ReactiveDateRangePickerBuilder = Widget Function(
 ///   },
 /// )
 /// ```
-class ReactiveDateRangePicker extends ReactiveFormField<DateTimeRange, DateTimeRange> {
+class ReactiveDateRangePicker
+    extends ReactiveFormField<DateTimeRange, DateTimeRange> {
   /// Creates a [ReactiveDateRangePicker] that wraps the function [showDateRangePicker].
   ///
   /// Can optionally provide a [formControl] to bind this widget to a control.
@@ -69,12 +70,12 @@ class ReactiveDateRangePicker extends ReactiveFormField<DateTimeRange, DateTimeR
     String? errorFormatText,
     String? errorInvalidText,
     Widget? child,
-  })  : assert(builder != null),
-        super(
+  }) : super(
           key: key,
           formControl: formControl,
           formControlName: formControlName,
-          builder: (ReactiveFormFieldState<DateTimeRange, DateTimeRange> field) {
+          builder:
+              (ReactiveFormFieldState<DateTimeRange, DateTimeRange> field) {
             return builder(
               field.context,
               ReactiveDateRangePickerDelegate._(
@@ -83,8 +84,8 @@ class ReactiveDateRangePicker extends ReactiveFormField<DateTimeRange, DateTimeR
                   context: field.context,
                   firstDate: firstDate,
                   lastDate: lastDate,
-                  initialDateRange:
-                      field.value ?? DateTimeRange(start: DateTime.now(), end: DateTime.now()),
+                  initialDateRange: field.value ??
+                      DateTimeRange(start: DateTime.now(), end: DateTime.now()),
                   initialEntryMode: initialEntryMode,
                   helpText: helpText,
                   cancelText: cancelText,
@@ -122,7 +123,8 @@ class ReactiveDateRangePickerDelegate {
   ReactiveDateRangePickerDelegate._(this._field, this._showPickerCallback);
 
   /// Gets the control bound to the [ReactiveDateRangePicker] widget
-  AbstractControl<DateTimeRange> get control => _field.control as AbstractControl<DateTimeRange>;
+  AbstractControl<DateTimeRange> get control =>
+      _field.control as AbstractControl<DateTimeRange>;
 
   /// Gets the value selected in the date picker.
   DateTimeRange? get value => this.control.value;

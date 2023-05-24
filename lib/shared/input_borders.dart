@@ -19,7 +19,7 @@ class LeftInputBorder extends InputBorder {
       topLeft: Radius.circular(4.0),
       bottomLeft: Radius.circular(4.0),
     ),
-  }) : assert(borderRadius != null);
+  });
 
   /// The radii of the border's rounded rectangle corners.
   ///

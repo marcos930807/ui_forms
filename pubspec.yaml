@@ -11,8 +11,8 @@ dependencies:
   built_collection: ^5.1.1
   flutter:
     sdk: flutter
-  flutter_animate: ^4.1.1+1
-  reactive_forms: ^14.3.0
+  flutter_animate: ^4.2.0+1
+  reactive_forms: ^16.1.0
 
 dev_dependencies:
   flutter_test:

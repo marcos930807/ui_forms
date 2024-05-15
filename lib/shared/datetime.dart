@@ -110,7 +110,7 @@ extension DateFormatted on DateTime {
 
   String get toPipeFormattedDateUTC {
     return DateFormat(
-      'd/M/y',
+      'M/d/y',
       Intl.getCurrentLocale(),
     ).format(this);
   }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ui_forms/forms/input_decoration.dart';
 import 'package:ui_forms/shared/dimen.dart';
 
 typedef ItemBuilder<T> = Widget Function(T item);
@@ -30,15 +29,12 @@ class SelectChip<T> extends StatelessWidget {
     return Card(
       margin: EdgeInsets.zero,
       elevation: 0,
-      child: Theme(
-        data: Theme.of(context).copyWith(useMaterial3: true),
-        child: InputDecorator(
-          decoration: formCustomDecoration(context).copyWith(labelText: label),
-          child: Wrap(
-            spacing: Dimens.xxs,
-            alignment: alignment ?? WrapAlignment.start,
-            children: _buildChoiceList(context),
-          ),
+      child: InputDecorator(
+        decoration: InputDecoration(labelText: label, errorText: errorText),
+        child: Wrap(
+          spacing: Dimens.xxs,
+          alignment: alignment ?? WrapAlignment.start,
+          children: _buildChoiceList(context),
         ),
       ),
     );

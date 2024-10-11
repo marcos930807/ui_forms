@@ -1,24 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:ui_forms/forms/input_decoration.dart';
 import 'package:ui_forms/shared/datetime.dart';
 
 class DecoratedReactiveDatePicker extends StatelessWidget {
   const DecoratedReactiveDatePicker({
-    Key? key,
+    super.key,
     required this.formControlName,
     this.label,
     this.mandatory = false,
-  }) : super(key: key);
+    this.validationMessages,
+  });
 
   final String formControlName;
   final bool mandatory;
   final String? label;
+
+  final Map<String, String Function(Object)>? validationMessages;
   @override
   Widget build(BuildContext context) {
+    ValidationMessageFunction? findValidationMessage(String errorKey) {
+      if (validationMessages != null &&
+          validationMessages!.containsKey(errorKey)) {
+        return validationMessages![errorKey];
+      } else {
+        final formConfig = ReactiveFormConfig.of(context);
+        return formConfig?.validationMessages[errorKey];
+      }
+    }
+
     const icon = Icons.calendar_month;
-    final safeLabel = label ?? 'Seleccione Fecha';
-    final decoration = formCustomDecoration(context).copyWith(
+    final safeLabel = label ?? 'Select Date';
+    final decoration = InputDecoration(
       labelText: mandatory ? ('$safeLabel *') : safeLabel,
       suffixIcon: Icon(
         icon,
@@ -27,19 +39,27 @@ class DecoratedReactiveDatePicker extends StatelessWidget {
       ),
     );
 
-    final InputDecoration effectiveDecoration = decoration.applyDefaults(
-      Theme.of(context).inputDecorationTheme,
-    );
     return ReactiveDatePicker(
       formControlName: formControlName,
       builder: (context, picker, child) {
+        final control = picker.control;
+        String? errorText;
+        var showErrors = control.invalid && control.touched;
+        if (control.hasErrors && showErrors) {
+          final errorKey = control.errors.keys.first;
+          final validationMessage = findValidationMessage(errorKey);
+
+          errorText = validationMessage != null
+              ? validationMessage(control.getError(errorKey)!)
+              : errorKey;
+        }
         return InkWell(
           onTap: () async {
             picker.showPicker();
           },
           child: InputDecorator(
             isEmpty: picker.value == null,
-            decoration: effectiveDecoration,
+            decoration: decoration.copyWith(errorText: errorText),
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(

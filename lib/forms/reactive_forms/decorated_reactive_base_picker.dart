@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:ui_forms/forms/dropdown_base_picker.dart';
+
 import '../../shared/dimen.dart';
 import '../input_decoration.dart';
 
@@ -34,7 +35,6 @@ class DecoratedReactiveBasePicker<T> extends StatelessWidget {
     final scale = MediaQuery.of(context).textScaleFactor;
     return ReactiveDropdownField<T>(
       elevation: 1,
-
       isDense: false,
       enableFeedback: true,
       onChanged: onChange,

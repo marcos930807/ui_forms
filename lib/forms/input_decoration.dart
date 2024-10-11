@@ -1,27 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:ui_forms/shared/input_borders.dart';
 
-InputDecoration formCustomDecoration(BuildContext context) => InputDecoration(
-      filled: true,
-      isDense: true,
-      fillColor: Theme.of(context).cardColor,
-      labelText: 'Hint',
-      border: InputBorder.none,
-      focusedBorder: LeftInputBorder(
-        borderSide: BorderSide(width: 5, color: Theme.of(context).primaryColor),
+InputDecoration formCustomDecoration(BuildContext context) {
+  final border = UnderlineInputBorder(
+    borderSide: BorderSide.none,
+    borderRadius: BorderRadius.all(Radius.circular(8)),
+  );
+
+  return InputDecoration(
+    filled: true,
+    fillColor: Theme.of(context).colorScheme.surfaceContainerLow,
+    labelText: 'Hint',
+    enabledBorder: border,
+    border: border,
+    focusedBorder: LeftInputBorder(
+      borderSide: BorderSide(
+        width: 5,
+        color: Theme.of(context).primaryColor,
       ),
-      focusedErrorBorder: const LeftInputBorder(
-        borderSide: BorderSide(color: Colors.red, width: 5),
-      ),
-      errorBorder: const LeftInputBorder(
-        borderSide: BorderSide(
-          width: 5,
-          color: Colors.red,
-        ),
-      ),
-      errorStyle: const TextStyle(
-        height: 0.3,
+      borderRadius: BorderRadius.all(Radius.circular(8)),
+    ),
+    focusedErrorBorder: LeftInputBorder(
+      borderSide: BorderSide(
         color: Colors.red,
-        fontWeight: FontWeight.bold,
+        width: 5,
       ),
-    );
+      borderRadius: BorderRadius.all(Radius.circular(8)),
+    ),
+    errorBorder: LeftInputBorder(
+      borderSide: BorderSide(
+        width: 5,
+        color: Colors.red,
+      ),
+      borderRadius: BorderRadius.all(Radius.circular(8)),
+    ),
+    errorStyle: const TextStyle(
+      height: 0.3,
+      color: Colors.red,
+      fontWeight: FontWeight.bold,
+    ),
+  );
+}

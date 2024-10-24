@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:ui_forms/shared/dimen.dart';
-import 'input_decoration.dart';
 
 typedef SyncLoadFunction<T> = List<T> Function();
 typedef BasePickerItemBuilder<T> = Widget Function(T item);
@@ -30,7 +28,7 @@ class DropDownBasePicker<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     final scale = MediaQuery.of(context).textScaleFactor;
     return InputDecorator(
-      decoration: formCustomDecoration(context).copyWith(
+      decoration: InputDecoration(
         isDense: true,
         isCollapsed: true, //The magic
         contentPadding: const EdgeInsets.symmetric(horizontal: Dimens.xs),
@@ -58,7 +56,8 @@ class DropDownBasePicker<T> extends StatelessWidget {
                         child: itemBuilder(e)),
                   ))
               .toList(),
-          elevation: 1,
+          elevation: 0,
+          dropdownColor: Theme.of(context).colorScheme.surfaceContainer,
           icon: Padding(
             padding: const EdgeInsets.only(
               left: 4,

@@ -42,6 +42,7 @@ class DecoratedReactiveDateRangePicker extends StatelessWidget {
 
     return ReactiveDateRangePicker(
       formControlName: formControlName,
+      initialEntryMode: DatePickerEntryMode.calendar,
       builder: (context, picker, child) {
         final control = picker.control;
         String? errorText;

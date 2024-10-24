@@ -3,7 +3,6 @@ import 'package:reactive_forms/reactive_forms.dart';
 import 'package:ui_forms/forms/dropdown_base_picker.dart';
 
 import '../../shared/dimen.dart';
-import '../input_decoration.dart';
 
 class DecoratedReactiveBasePicker<T> extends StatelessWidget {
   const DecoratedReactiveBasePicker({
@@ -34,15 +33,16 @@ class DecoratedReactiveBasePicker<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     final scale = MediaQuery.of(context).textScaleFactor;
     return ReactiveDropdownField<T>(
-      elevation: 1,
+      elevation: 0,
       isDense: false,
       enableFeedback: true,
       onChanged: onChange,
       validationMessages: validationMessages,
-      decoration: formCustomDecoration(context).copyWith(
-        isDense: true,
+      decoration: InputDecoration(
+        isDense: false,
         isCollapsed: true, //The magic
-        contentPadding: const EdgeInsets.symmetric(horizontal: Dimens.xs),
+        contentPadding: const EdgeInsets.symmetric(
+            horizontal: Dimens.xs, vertical: Dimens.xxs),
         prefixIcon: icon != null
             ? Icon(
                 icon,
@@ -64,6 +64,7 @@ class DecoratedReactiveBasePicker<T> extends StatelessWidget {
       ),
       // showErrors: (control) => true,
       formControlName: formControlName,
+      dropdownColor: Theme.of(context).colorScheme.surfaceContainer,
       onTap: onTap,
       items: loadFunction()
           .map((e) => DropdownMenuItem<T>(

@@ -1,6 +1,6 @@
 name: ui_forms
 description: A new Flutter package project.
-version: 0.0.1
+version: 0.0.2
 homepage: "TBD"
 
 environment:
@@ -11,7 +11,7 @@ dependencies:
   built_collection: ^5.1.1
   flutter:
     sdk: flutter
-  flutter_animate: ^4.5.0
+  flutter_animate: ^4.5.2
   reactive_forms: ^17.0.1
 
 dev_dependencies:

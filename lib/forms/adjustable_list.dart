@@ -2,12 +2,12 @@ import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-typedef ItemBuilder<T> = Widget Function(T item);
+typedef AdjustableListItemBuilder<T> = Widget Function(T item);
 
 class AdjustableList<T> extends StatelessWidget {
   final BuiltList<T> initialValues;
   final ValueChanged<BuiltList<T>> onListChanged;
-  final ItemBuilder<T> itemBuilder;
+  final AdjustableListItemBuilder<T> itemBuilder;
   final String? label;
   final String? addPlaceholder;
   final IconData? addIcon;
@@ -122,7 +122,7 @@ class ReactiveAdjustableList<T>
   ReactiveAdjustableList({
     Key? key,
     required String formControlName,
-    required ItemBuilder<T> itemBuilder,
+    required AdjustableListItemBuilder<T> itemBuilder,
     String? label,
     String? addPlaceholder,
     IconData? addIcon,

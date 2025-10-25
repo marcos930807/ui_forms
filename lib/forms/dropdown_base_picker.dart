@@ -26,12 +26,9 @@ class DropDownBasePicker<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final scale = MediaQuery.of(context).textScaleFactor;
     return InputDecorator(
       decoration: InputDecoration(
-        isDense: true,
         isCollapsed: true, //The magic
-        contentPadding: const EdgeInsets.symmetric(horizontal: Dimens.xs),
         prefixIcon: icon != null
             ? Icon(
                 icon,
@@ -50,7 +47,6 @@ class DropDownBasePicker<T> extends StatelessWidget {
               .map((e) => DropdownMenuItem<T>(
                     value: e,
                     child: Container(
-                        height: 45 * scale,
                         padding: const EdgeInsets.only(top: 10),
                         alignment: Alignment.centerLeft,
                         child: itemBuilder(e)),
